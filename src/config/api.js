@@ -1,15 +1,10 @@
+const isDevelopment = import.meta.env.DEV;
+const API_BASE = isDevelopment ? "http://localhost:3001" : "";
+
 export const API_CONFIG = {
-  // Use proxy server instead of direct API calls
-  // This keeps API keys SECURE on the backend
-  OPENROUTER_ENDPOINT: "http://localhost:3001/api/openrouter",
-  EXECUTE_ENDPOINT: "http://localhost:3001/api/execute",
-
-  // Model selection - Grok Code Fast 1 (fast and cheap!)
+  OPENROUTER_ENDPOINT: `${API_BASE}/api/openrouter`,
+  EXECUTE_ENDPOINT: `${API_BASE}/api/execute`,
   MODEL: "x-ai/grok-code-fast-1",
-
-  // For production, change localhost to your deployed proxy URL:
-  // OPENROUTER_ENDPOINT: "https://your-app.com/api/openrouter",
-  // EXECUTE_ENDPOINT: "https://your-app.com/api/execute",
 };
 
 export const BOOT_SEQUENCE = [
