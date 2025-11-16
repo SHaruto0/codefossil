@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+* {
+  font-family: "VT323", monospace;
+}
+
+.crt-screen {
+  animation: flicker 0.15s infinite;
+  text-shadow: 0 0 5px currentColor;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.97;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.97;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-color {
+  0% {
+    filter: none;
+  }
+  25% {
+    filter: brightness(1.2) contrast(1.1);
+  }
+  50% {
+    filter: brightness(0.9) contrast(1.2);
+  }
+  75% {
+    filter: brightness(1.1) contrast(1.1);
+  }
+  100% {
+    filter: none;
+  }
+}
+
+.crt-screen.glitch-active {
+  animation: flicker 0.15s infinite, glitch 0.3s ease-in-out,
+    glitch-color 0.3s ease-in-out;
+}
+
+.crt-screen::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.boot-line {
+  animation: type 0.15s ease-out;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes type {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.glow {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+}
+
+textarea {
+  resize: none;
+  background: transparent;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+textarea:hover,
+textarea:focus {
+  scrollbar-color: rgba(34, 197, 94, 0.2) transparent;
+}
+
+textarea::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+
+textarea:hover::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.2);
+}
+
+textarea:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.3);
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.scanline {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(144, 238, 144, 0.5),
+    rgba(144, 238, 144, 0.5),
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(144, 238, 144, 0.7);
+  animation: scan-synchronized 6s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.scanline-amber {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(217, 119, 6, 0.5),
+    rgba(217, 119, 6, 0.5),
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(217, 119, 6, 0.7);
+  animation: scan-synchronized 6s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+[data-mode="1972"] .scanline {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(200, 200, 200, 0.3),
+    rgba(200, 200, 200, 0.3),
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(200, 200, 200, 0.5);
+}
+
+@keyframes scan-synchronized {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
