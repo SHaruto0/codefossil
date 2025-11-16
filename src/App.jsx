@@ -108,7 +108,7 @@ const App = () => {
     if (!isRetro || showEvolution || showMatrix || !isCRT) return;
 
     const triggerGlitch = () => {
-      if (Math.random() < 0.05) {
+      if (Math.random() < -1) {
         setIsGlitching(true);
         setTimeout(() => setIsGlitching(false), 300);
       }
