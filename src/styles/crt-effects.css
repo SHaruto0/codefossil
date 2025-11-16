@@ -169,7 +169,7 @@ textarea:focus {
     transparent
   );
   box-shadow: 0 0 12px rgba(144, 238, 144, 0.7);
-  animation: scan-synchronized 6s linear infinite;
+  animation: scan-synchronized 8s linear infinite;
   pointer-events: none;
   z-index: 9999;
 }
@@ -187,7 +187,7 @@ textarea:focus {
     transparent
   );
   box-shadow: 0 0 12px rgba(217, 119, 6, 0.7);
-  animation: scan-synchronized 6s linear infinite;
+  animation: scan-synchronized 8s linear infinite;
   pointer-events: none;
   z-index: 9999;
 }
